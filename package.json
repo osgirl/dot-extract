@@ -1,6 +1,15 @@
 {
   "name": "dot-extract",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "description": "Extracts fields from object based on dot-notation strings",
+  "author": {
+    "name": "TUI Nordic"
+  },
+  "main": "lib.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fritidsresor/dot-extract.git"
+  },
+  "license": "MIT",
+  "homepage: "https://github.com/Fritidsresor/dot-extract"
 }
