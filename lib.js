@@ -1,12 +1,12 @@
 function extract(input, spec) {
   const processed = process(spec)
   if (Array.isArray(input)) {
-    return input.map(x => doSingle(x, processed))
+    return input.map(x => extractSingle(x, processed))
   }
-  return doSingle(input, processed)
+  return extractSingle(input, processed)
 }
 
-function doSingle(input, spec) {
+function extractSingle(input, spec) {
   if (!input) {
     return undefined
   }
@@ -15,13 +15,13 @@ function doSingle(input, spec) {
     const inputProperty = input[specKey]
     if (!specItem) {
       output[specKey] = inputProperty
-    } else {
-      if (Array.isArray(inputProperty)) {
-        output[specKey] = inputProperty.map(x => doSingle(x, specItem))
-      } else {
-        output[specKey] = doSingle(inputProperty, specItem)
-      }
+      continue
     }
+    if (Array.isArray(inputProperty)) {
+      output[specKey] = inputProperty.map(x => extractSingle(x, specItem))
+      continue
+    }
+    output[specKey] = extractSingle(inputProperty, specItem)
   }
   return output
 }
